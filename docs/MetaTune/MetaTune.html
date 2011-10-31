@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class MetaTune</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> MetaTune</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MetaTune - The ultimate PHP Wrapper to the Spotify Metadata API</p>
+<p class="description"><p>Copyright (C) 2010  Mikael Brevik</p><p><pre>   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</pre></p><p>This is the controller class.  With an object of this class you may search or lookup detailed information  about a song on Spotify.</p><p>Caching is activated per default. To deactivate id, change USE_CACH to false.  Change cache directory in the CACHE_DIR constant.</p><p>If the Spotify URLS should change somehow, you can alter these in the constants  SERVICE_BASE_URL_SEARCH and SERVICE_BASE_URL_LOOKUP.</p><p>Example:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$spotify&nbsp;</span>=&nbsp;<span class="src-id"><a href="../MetaTune/MetaTune.html">MetaTune</a></span><span class="src-sym">::</span><a href="../MetaTune/MetaTune.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$song&nbsp;</span>=&nbsp;<span class="src-var">$spotify</span><span class="src-sym">-&gt;</span><a href="../MetaTune/MetaTune.html#methodsearchTrack">searchTrack</a><span class="src-sym">(</span><span class="src-str">&quot;Superfamily&nbsp;-&nbsp;The&nbsp;Dive&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;echo&nbsp;<span class="src-str">&quot;First&nbsp;result:&nbsp;&quot;&nbsp;</span>.&nbsp;<span class="src-var">$song</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">getTitle</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>.&nbsp;<span class="src-str">&quot;&nbsp;by&nbsp;&quot;&nbsp;</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;<span class="src-var">$song</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">getArtistAsString</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Will&nbsp;result&nbsp;in:</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;First&nbsp;result:&nbsp;The&nbsp;Dive&nbsp;by&nbsp;Superfamily</span></div></li>
+</ol></div></p><p><strong>SPOTIFY Disclaimer</strong>  <em>This product uses a SPOTIFY API but is not endorsed, certified or otherwise
+ approved in any way by Spotify. Spotify is the registered trade mark of the
+ Spotify Group.</em></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mikael Brevik &lt;<a href="mailto:mikaelbre@gmail.com">mikaelbre@gmail.com</a>&gt;</li>
+				<li><span class="field">version:</span> 0.2</li>
+				<li><span class="field">copyright:</span> Mikael Brevik 2010</li>
+				<li><span class="field">todo:</span> remove redundant information (recursive artist/track/album)?</li>
+				<li><span class="field">todo:</span> caching added - Alot of data cached?</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_MetaTune.class.php.html">/MetaTune.class.php</a> (line <span class="field">55</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CACHE_DIR" title="details" class="const-name">CACHE_DIR</a> = 					<span class="var-type"> 'lib/cache/'</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CACHE_PREFIX" title="details" class="const-name">CACHE_PREFIX</a> = 					<span class="var-type"> &quot;METATUNE_CACHE_&quot;</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SERVICE_BASE_URL_LOOKUP" title="details" class="const-name">SERVICE_BASE_URL_LOOKUP</a> = 					<span class="var-type"> &quot;http://ws.spotify.com/lookup/1/&quot;</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SERVICE_BASE_URL_SEARCH" title="details" class="const-name">SERVICE_BASE_URL_SEARCH</a> = 					<span class="var-type"> &quot;http://ws.spotify.com/search/1/&quot;</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#USE_CACHE" title="details" class="const-name">USE_CACHE</a> = 					<span class="var-type"> true</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																			
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">void</span>
+										<a href="#getInstance" title="details" class="method-name">getInstance</a>
+										()
+									</div>
+																																																																																																																											
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#generateXML" title="details" class="method-name">generateXML</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$input</span>)
+									</div>
+																							
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed</span>
+										<a href="#lookup" title="details" class="method-name">lookup</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$spotifyURI</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+										<a href="#lookupAlbum" title="details" class="method-name">lookupAlbum</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+										<a href="#lookupAlbumDetailed" title="details" class="method-name">lookupAlbumDetailed</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+										<a href="#lookupArtist" title="details" class="method-name">lookupArtist</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+										<a href="#lookupArtistDetailed" title="details" class="method-name">lookupArtistDetailed</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Track.html">Track</a></span>
+										<a href="#lookupTrack" title="details" class="method-name">lookupTrack</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed</span>
+										<a href="#parseXMLAlbum" title="details" class="method-name">parseXMLAlbum</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed</span>
+										<a href="#parseXMLArtist" title="details" class="method-name">parseXMLArtist</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed</span>
+										<a href="#parseXMLTracks" title="details" class="method-name">parseXMLTracks</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">array</span>
+										<a href="#searchAlbum" title="details" class="method-name">searchAlbum</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">array</span>
+										<a href="#searchArtist" title="details" class="method-name">searchArtist</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">array</span>
+										<a href="#searchTrack" title="details" class="method-name">searchTrack</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#__clone" title="details" class="method-name">__clone</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetInstance" id="getInstance"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static getInstance</span> (line <span class="line-number">75</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get new instance of this object.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">void</span>
+		<span class="method-name">
+			getInstance
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgenerateXML" id="generateXML"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">generateXML</span> (line <span class="line-number">100</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generates a XML string from your array or object of artists, albums  or tracks.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			generateXML
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$input</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$input</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookup" id="lookup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookup</span> (line <span class="line-number">279</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A wrapper method for the lookup***() methods. Give in a Spotify URI,  and that will be used to chose the correct method. For artists and albums  this method will return the detailed information.</p>
+<p class="description"><p>Example of $spotifyURI  <ul><li>spotify:track:1f58xau99Rdn0hhcJTwRhz</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			lookup
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$spotifyURI</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$spotifyURI</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookupAlbum" id="lookupAlbum"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookupAlbum</span> (line <span class="line-number">408</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get basic info about one album. Argument takes a spotify URI  or just the id it self.</p>
+<p class="description"><p>This method only gets basic album information. Will not contain the  detailed information like tracks in album.</p><p>Example of $id:  <ul><li>spotify:album:1kjefoUShy8bZcwBEHtMWp</li><li>1kjefoUShy8bZcwBEHtMWp</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+		<span class="method-name">
+			lookupAlbum
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookupAlbumDetailed" id="lookupAlbumDetailed"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookupAlbumDetailed</span> (line <span class="line-number">439</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get all (detailed) info about one album. Argument takes a spotify URI  or just the id it self.</p>
+<p class="description"><p>This method gets detailed album information. Will contain the  detailed information like tracks.</p><p>Example of $id:  <ul><li>spotify:album:1kjefoUShy8bZcwBEHtMWp</li><li>1kjefoUShy8bZcwBEHtMWp</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+		<span class="method-name">
+			lookupAlbumDetailed
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookupArtist" id="lookupArtist"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookupArtist</span> (line <span class="line-number">344</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get basic info about one artist. Argument takes a spotify URI or just the  id it self.</p>
+<p class="description"><p>This method will only get the basic information about an artist.  Will not get all artist's albums.</p><p>Example of $id:  <ul><li>spotify:artist:5ObUhLdIEbhEqVCYxzVQ9l</li><li>5ObUhLdIEbhEqVCYxzVQ9l</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+		<span class="method-name">
+			lookupArtist
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookupArtistDetailed" id="lookupArtistDetailed"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookupArtistDetailed</span> (line <span class="line-number">376</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get full (detailed) info about one artist. Argument takes a spotify URI  or just the id it self.</p>
+<p class="description"><p>This method will return an artist with all it's albums.</p><p>Example of $id:  <ul><li>spotify:artist:5ObUhLdIEbhEqVCYxzVQ9l</li><li>5ObUhLdIEbhEqVCYxzVQ9l</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+		<span class="method-name">
+			lookupArtistDetailed
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlookupTrack" id="lookupTrack"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">lookupTrack</span> (line <span class="line-number">311</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get full info about one track. Argument takes a spotify URI or just the  id it self.</p>
+<p class="description"><p>Example of $id:  <ul><li>spotify:track:1f58xau99Rdn0hhcJTwRhz</li><li>1f58xau99Rdn0hhcJTwRhz</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Track.html">Track</a></span>
+		<span class="method-name">
+			lookupTrack
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodparseXMLAlbum" id="parseXMLAlbum"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">parseXMLAlbum</span> (line <span class="line-number">184</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generates a array or object of (an) album(s) from provided XML document.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			parseXMLAlbum
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contents</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodparseXMLArtist" id="parseXMLArtist"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">parseXMLArtist</span> (line <span class="line-number">159</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generates a array or object of (an) artist(s) from provided XML document.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			parseXMLArtist
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contents</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodparseXMLTracks" id="parseXMLTracks"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">parseXMLTracks</span> (line <span class="line-number">134</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generates a array or object of tracks from provided XML document.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			parseXMLTracks
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$contents</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contents</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearchAlbum" id="searchAlbum"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">searchAlbum</span> (line <span class="line-number">252</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for an album at Spotify.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			searchAlbum
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearchArtist" id="searchArtist"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">searchArtist</span> (line <span class="line-number">232</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search in all the artists at Spotifys database.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> MetaTuneException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			searchArtist
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearchTrack" id="searchTrack"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">searchTrack</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for a spesific track.</p>
+<p class="description"><p>If everything works it will return an array with all the results as Track  objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			searchTrack
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__clone" id="__clone"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">__clone</span> (line <span class="line-number">88</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Prevents cloning</p>
+<p class="description"><p>Cloning not allowed in a singelton patterned class</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__clone
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constCACHE_DIR" id="CACHE_DIR"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CACHE_DIR</span>
+			 = <span class="const-default"> 'lib/cache/'</span>
+			(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constCACHE_PREFIX" id="CACHE_PREFIX"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CACHE_PREFIX</span>
+			 = <span class="const-default"> &quot;METATUNE_CACHE_&quot;</span>
+			(line <span class="line-number">58</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constSERVICE_BASE_URL_LOOKUP" id="SERVICE_BASE_URL_LOOKUP"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SERVICE_BASE_URL_LOOKUP</span>
+			 = <span class="const-default"> &quot;http://ws.spotify.com/lookup/1/&quot;</span>
+			(line <span class="line-number">61</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constSERVICE_BASE_URL_SEARCH" id="SERVICE_BASE_URL_SEARCH"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SERVICE_BASE_URL_SEARCH</span>
+			 = <span class="const-default"> &quot;http://ws.spotify.com/search/1/&quot;</span>
+			(line <span class="line-number">60</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constUSE_CACHE" id="USE_CACHE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">USE_CACHE</span>
+			 = <span class="const-default"> true</span>
+			(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+						
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sun, 30 May 2010 04:51:01 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

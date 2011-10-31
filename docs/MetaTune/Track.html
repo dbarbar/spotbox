@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Track</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Track</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A track from Spotify. Contains information about artist and album.</p>
+<p class="description"><p>MetaTune - A PHP Wrapper to the Spotify Metadata API  Copyright (C) 2010  Mikael Brevik</p><p><pre>   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</pre></p><p>A class for Tracks. Holds information about everything a track needs; URI/URL,  title, artist, album, length (float and string), popularity and tracknr.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mikael Brevik &lt;<a href="mailto:mikaelbre@gmail.com">mikaelbre@gmail.com</a>&gt;</li>
+				<li><span class="field">version:</span> 0.2</li>
+				<li><span class="field">copyright:</span> Mikael Brevik 2010</li>
+				<li><span class="field">uses:</span> <a href="../MetaTune/SpotifyItem.html">SpotifyItem</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Track.class.php.html">/Track.class.php</a> (line <span class="field">33</span>)
+		</p>
+		
+				
+		<pre><a href="../MetaTune/SpotifyItem.html">SpotifyItem</a>
+   |
+   --Track</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																															
+				<div class="method-definition">
+					<img src="../media/images/Constructor.png" alt=" "/>
+											<span class="method-result">Track</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$uri</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type"><a href="../MetaTune/Artist.html">Artist</a></span>&nbsp;<span class="var-name">$artist</span>, <span class="var-type"><a href="../MetaTune/Album.html">Album</a></span>&nbsp;<span class="var-name">$album</span>, [<span class="var-type">float</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], [<span class="var-type">float</span>&nbsp;<span class="var-name">$popularity</span> = <span class="var-default">0</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$trackNr</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$discNr</span> = <span class="var-default">0</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#asXML" title="details" class="method-name">asXML</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">bool</span>
+										<a href="#equals" title="details" class="method-name">equals</a>
+											(<span class="var-type"><a href="../MetaTune/SpotifyItem.html">SpotifyItem</a></span>&nbsp;<span class="var-name">$b</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+										<a href="#getAlbum" title="details" class="method-name">getAlbum</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+										<a href="#getArtist" title="details" class="method-name">getArtist</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getArtistAsString" title="details" class="method-name">getArtistAsString</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">int</span>
+										<a href="#getDiscNr" title="details" class="method-name">getDiscNr</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getID" title="details" class="method-name">getID</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">float</span>
+										<a href="#getLength" title="details" class="method-name">getLength</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">String</span>
+										<a href="#getLengthInMinutesAsString" title="details" class="method-name">getLengthInMinutesAsString</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">float</span>
+										<a href="#getPopularity" title="details" class="method-name">getPopularity</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">int</span>
+										<a href="#getPopularityAsPercent" title="details" class="method-name">getPopularityAsPercent</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getTitle" title="details" class="method-name">getTitle</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">int</span>
+										<a href="#getTrackNr" title="details" class="method-name">getTrackNr</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getURI" title="details" class="method-name">getURI</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getURL" title="details" class="method-name">getURL</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#setURI" title="details" class="method-name">setURI</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$uri</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../MetaTune/SpotifyItem.html">SpotifyItem</a></span></p>
+					<blockquote>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../MetaTune/SpotifyItem.html#var$spotifyBase">SpotifyItem::$spotifyBase</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Constructor.png" />
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">54</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Track</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$uri</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type"><a href="../MetaTune/Artist.html">Artist</a></span>&nbsp;<span class="var-name">$artist</span>, <span class="var-type"><a href="../MetaTune/Album.html">Album</a></span>&nbsp;<span class="var-name">$album</span>, [<span class="var-type">float</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], [<span class="var-type">float</span>&nbsp;<span class="var-name">$popularity</span> = <span class="var-default">0</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$trackNr</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$discNr</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$uri</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$title</span>			</li>
+					<li>
+				<span class="var-type"><a href="../MetaTune/Artist.html">Artist</a></span>
+				<span class="var-name">$artist</span>			</li>
+					<li>
+				<span class="var-type"><a href="../MetaTune/Album.html">Album</a></span>
+				<span class="var-name">$album</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$length</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$popularity</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$trackNr</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$discNr</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodasXML" id="asXML"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">asXML</span> (line <span class="line-number">240</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			asXML
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../MetaTune/SpotifyItem.html#methodasXML">SpotifyItem::asXML()</a></dt>
+						<dd>A method all SpotifyItems must have to be able to export information.</dd>
+					</dl>
+			
+	</div>
+<a name="methodequals" id="equals"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">equals</span> (line <span class="line-number">207</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if $this is equal to $b.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			equals
+		</span>
+					(<span class="var-type"><a href="../MetaTune/SpotifyItem.html">SpotifyItem</a></span>&nbsp;<span class="var-name">$b</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../MetaTune/Track.html">Track</a></span>
+				<span class="var-name">$b</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../MetaTune/SpotifyItem.html#methodequals">SpotifyItem::equals()</a></dt>
+						<dd>Used to check equality of a SpotifyClass (or it's children) class.</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetAlbum" id="getAlbum"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getAlbum</span> (line <span class="line-number">115</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the album this track is on.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Album.html">Album</a></span>
+		<span class="method-name">
+			getAlbum
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetArtist" id="getArtist"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getArtist</span> (line <span class="line-number">93</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the artist of this track.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../MetaTune/Artist.html">Artist</a></span>
+		<span class="method-name">
+			getArtist
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetArtistAsString" id="getArtistAsString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getArtistAsString</span> (line <span class="line-number">102</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get artists as string</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getArtistAsString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetDiscNr" id="getDiscNr"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getDiscNr</span> (line <span class="line-number">176</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get disc number of track (in album)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getDiscNr
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetID" id="getID"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getID</span> (line <span class="line-number">197</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get just the id of the track. (last part of a spotify uri).</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getID
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../MetaTune/SpotifyItem.html#methodgetID">SpotifyItem::getID()</a></dt>
+						<dd>This function/method is used to extract the proper ID from  a spotify URI. Must be in the format : &quot;spotify:&lt;medium&gt;:&lt;ID&gt;&quot;</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetLength" id="getLength"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getLength</span> (line <span class="line-number">125</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get number of seconds of this tracks length  Example: 132.93</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">float</span>
+		<span class="method-name">
+			getLength
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetLengthInMinutesAsString" id="getLengthInMinutesAsString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getLengthInMinutesAsString</span> (line <span class="line-number">135</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the duration of this song in a string format.</p>
+<p class="description"><p>Example: 2:13</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">String</span>
+		<span class="method-name">
+			getLengthInMinutesAsString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPopularity" id="getPopularity"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getPopularity</span> (line <span class="line-number">148</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a float representation of the popularity.</p>
+<p class="description"><p>Example: 0.92</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">float</span>
+		<span class="method-name">
+			getPopularity
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPopularityAsPercent" id="getPopularityAsPercent"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getPopularityAsPercent</span> (line <span class="line-number">158</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the popularity as percentage (int).</p>
+<p class="description"><p>Example: 92</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getPopularityAsPercent
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetTitle" id="getTitle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getTitle</span> (line <span class="line-number">70</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get track title.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getTitle
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetTrackNr" id="getTrackNr"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getTrackNr</span> (line <span class="line-number">167</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get track number of track (in album)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getTrackNr
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetURI" id="getURI"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getURI</span> (line <span class="line-number">80</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the Spotify URI to this track. Example:  spotify:track:5ScEEDGpKkkcCgYXzRRNlM</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getURI
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetURL" id="getURL"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getURL</span> (line <span class="line-number">188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Not all systems can open a Spotify URI. This method returns a HTTP URL  that links to the current artist/track/album.</p>
+<p class="description"><p>Example: http://open.spotify.com/artist/0mXTJETA4XUa12MmmXxZJh</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getURL
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../MetaTune/SpotifyItem.html#methodgetURL">SpotifyItem::getURL()</a></dt>
+						<dd>A must have method to implement for all extended classes. Used  to find a HTTP URL from a Spotify Medium.</dd>
+					</dl>
+			
+	</div>
+<a name="methodsetURI" id="setURI"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">setURI</span> (line <span class="line-number">84</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setURI
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$uri</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$uri</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">__toString</span> (line <span class="line-number">236</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../MetaTune/SpotifyItem.html">SpotifyItem</a></span></p>
+					<blockquote>
+													<img src="../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../MetaTune/SpotifyItem.html#methodasXML">SpotifyItem::asXML()</a></span><br>
+													<img src="../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../MetaTune/SpotifyItem.html#methodequals">SpotifyItem::equals()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../MetaTune/SpotifyItem.html#methodgetID">SpotifyItem::getID()</a></span><br>
+													<img src="../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../MetaTune/SpotifyItem.html#methodgetURL">SpotifyItem::getURL()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sun, 30 May 2010 04:51:02 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
