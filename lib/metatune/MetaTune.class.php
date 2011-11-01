@@ -53,7 +53,7 @@
  * @package MetaTune
  */
 class MetaTune {
-    const CACHE_DIR = 'lib/cache/'; // Cache directory (must be writable)
+    const CACHE_DIR = '/tmp/'; // Cache directory (must be writable)
     const USE_CACHE = true; // Should caching be activated?
     const CACHE_PREFIX = "METATUNE_CACHE_"; // prefix for cache-files. 
 
