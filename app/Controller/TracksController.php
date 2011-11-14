@@ -9,11 +9,13 @@ class TracksController extends AppController {
     }
     
     public function search() {
-      // show a search box - view snippet
       $this->Set('results', array());
-      if ($q = $this->request->query['q']) {
+      $this->Set('q', NULL);
+      if (isset($this->request->query['q'])) {
+        $q = $this->request->query['q'];
         // do a spotify api call and set the results to the view
         $this->Set('results', $this->_spotify_search($q));
+        $this->Set('q', $q);
         // save the results to the tracks model
       }
     }

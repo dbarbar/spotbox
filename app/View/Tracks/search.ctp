@@ -1,5 +1,7 @@
-<h1>Search for Songs</h1>
+<h1>SpotiMonster</h1>
+<p>Search for songs below and click "Request" to add them to the jukebox queue.</p>
 
+<h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
 <?php echo $this->Form->text('q'); ?>
 <?php echo $this->Form->end('Search'); ?>
@@ -8,7 +10,7 @@
 <h2>Search Results</h2>
 <table>
     <tr>
-        <th>Id</th>
+        <th>Request</th>
         <th>Title</th>
         <th>Artist</th>
         <th>Album</th>
@@ -18,7 +20,7 @@
 
     <?php foreach ($results as $track): ?>
     <tr>
-        <td><?php echo $track->getURI(); ?></td>
+        <td><?php echo $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track->getURI()))?>
         <td><?php echo $track->getTitle(); ?>
         <td><?php echo $track->getArtistAsString(); ?></td>
         <td><?php echo $track->getAlbum(); ?></td>
