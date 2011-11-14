@@ -1,7 +1,7 @@
 <?php
 
-class SpotifyTrack extends AppModel {
-  public $name = 'Spotify Track';
+class Track extends AppModel {
+  public $name = 'Track';
   public $validate = array(
    'uri' => array(
      'rule' => 'notEmpty', // @todo create our own rule for determining a valid spotify uri

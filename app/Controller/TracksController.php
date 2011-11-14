@@ -1,11 +1,11 @@
 <?php
 
-class SpotifyTracksController extends AppController {
+class TracksController extends AppController {
     public $helpers = array ('Html','Form');
-    public $name = 'Spotify Tracks';
+    public $name = 'Tracks';
 
     public function index() {
-        $this->set('spotify_tracks', $this->SpotifyTrack->find('all'));
+        $this->set('tracks', $this->Track->find('all'));
     }
     
     public function search($search = NULL) {
