@@ -35,7 +35,7 @@ class TracksController extends AppController {
   private function _spotify_search($q) {
     // queries the spotify metadata api.
     // returns an array of results.
-    require_once('../../vendors/Metatune.php');
+    require_once(VENDORS . 'metatune/config.php');
     $spotiy = MetaTune::getInstance();
     $response = $spotiy->searchTrack($q);
     if (count($response) < 1) {
