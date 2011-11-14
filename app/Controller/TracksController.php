@@ -8,11 +8,13 @@ class TracksController extends AppController {
         $this->set('tracks', $this->Track->find('all'));
     }
     
-    public function search($search = NULL) {
+    public function search() {
       // show a search box - view snippet
-      if ($search) {
+      $this->Set('results', array());
+      if ($q = $this->request->query['q']) {
         // do a spotify api call and set the results to the view
-        // save the results to the spotifytrack model
+        $this->Set('results', $this->_spotify_search($q));
+        // save the results to the tracks model
       }
     }
     
@@ -28,14 +30,25 @@ class TracksController extends AppController {
       // returns an array of results.
     }
     
-    private function _spotify_search($search) {
-      // queries the spotify metadata api.
-      // returns an array of results.
+  private function _spotify_search($q) {
+    // queries the spotify metadata api.
+    // returns an array of results.
+    require_once('../../vendors/Metatune.php');
+    $spotiy = MetaTune::getInstance();
+    $response = $spotiy->searchTrack($q);
+    if (count($response) < 1) {
+      return array();
     }
+    if (isset($response['errorid'])) {
+      //echo "<pre>Error: " . $response['errorid'] . "\nMsg: " . $response['errormsg'] . "</pre>";
+      return NULL;
+    }
+    return $response;
+  }
     
-    private function _dual_search($search) {
-      // searches local and spotify
-      // dedupes the results
-      // and places local results above spotify results.
-    }
+  private function _dual_search($search) {
+    // searches local and spotify
+    // dedupes the results
+    // and places local results above spotify results.
+  }
 }

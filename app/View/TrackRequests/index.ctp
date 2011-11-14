@@ -9,7 +9,7 @@
         <th>Request Count</th>
     </tr>
 
-    <?php foreach ($requests as $request): ?>
+    <?php foreach ($track_requests as $request): ?>
     <tr>
         <td><?php echo $request['Request']['uri']; ?></td>
         <td><?php echo $request['Request']['created']; ?></td>
