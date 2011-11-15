@@ -36,7 +36,7 @@ class TracksController extends AppController {
     // queries the spotify metadata api.
     // returns an array of results.
     App::import('Vendor', 'MetatuneConfig', array('file' => 'metatune' . DS . 'config.php'));
-    App::import('Vendor', 'MetatuneClass', array('file' => 'metatune' . DS . 'Metatune.class.php'));
+    App::import('Vendor', 'MetatuneClass', array('file' => 'metatune' . DS . 'MetaTune.class.php'));
     App::import('Vendor', 'MetatuneMBSimpleXMLElement', array('file' => 'metatune' . DS . 'MBSimpleXMLElement.class.php'));
     App::import('Vendor', 'MetaTuneException', array('file' => 'metatune' . DS . 'MetaTuneException.class.php'));
     App::import('Vendor', 'MetatuneSpotifyItem', array('file' => 'metatune' . DS . 'SpotifyItem.class.php'));
