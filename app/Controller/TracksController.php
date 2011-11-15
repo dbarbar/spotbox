@@ -31,11 +31,19 @@ class TracksController extends AppController {
       // queries our local spotifytracks model.
       // returns an array of results.
     }
-    
+
   private function _spotify_search($q) {
     // queries the spotify metadata api.
     // returns an array of results.
-    require_once(VENDORS . 'metatune/config.php');
+    App::import('Vendor', 'MetatuneConfig', array('file' => 'metatune' . DS . 'config.php'));
+    App::import('Vendor', 'MetatuneClass', array('file' => 'metatune' . DS . 'Metatune.class.php'));
+    App::import('Vendor', 'MetatuneMBSimpleXMLElement', array('file' => 'metatune' . DS . 'MBSimpleXMLElement.class.php'));
+    App::import('Vendor', 'MetaTuneException', array('file' => 'metatune' . DS . 'MetaTuneException.class.php'));
+    App::import('Vendor', 'MetatuneSpotifyItem', array('file' => 'metatune' . DS . 'SpotifyItem.class.php'));
+    App::import('Vendor', 'MetatuneArtist', array('file' => 'metatune' . DS . 'Artist.class.php'));
+    App::import('Vendor', 'MetatuneAlbum', array('file' => 'metatune' . DS . 'Album.class.php'));
+    App::import('Vendor', 'MetatuneTrack', array('file' => 'metatune' . DS . 'Track.class.php'));
+
     $spotiy = MetaTune::getInstance();
     $response = $spotiy->searchTrack($q);
     if (count($response) < 1) {
