@@ -1,10 +1,13 @@
-<h1>SpotiMonster</h1>
-<p>Search for songs below and click "Request" to add them to the jukebox queue.</p>
+<p>Search for songs below and click "Request" to add them to the Fierce jukebox queue.</p>
 
 <h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
 <?php echo $this->Form->text('q'); ?>
 <?php echo $this->Form->end('Search'); ?>
+
+<?php if ($q && count($results) == 0): ?>
+  <h2>No Results found</h2>
+<?php endif; ?>
 
 <?php if (count($results) > 0): ?>
 <h2>Search Results</h2>
