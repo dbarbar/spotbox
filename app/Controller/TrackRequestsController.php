@@ -90,11 +90,9 @@ class TrackRequestsController extends AppController {
       // POST /playlist/{id}/add?index
 
   		$ch = curl_init(); 
-  		curl_setopt($ch, CURLOPT_URL,$url); // set url to post to 
-  		curl_setopt($ch, CURLOPT_FAILONERROR, 1); 
-  		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects 
-  		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable 
-  		curl_setopt($ch, CURLOPT_TIMEOUT, 60); // times out after $timeout secs 
+  		curl_setopt($ch, CURLOPT_URL, $url);
+  		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return into a variable 
+  		curl_setopt($ch, CURLOPT_TIMEOUT, 30); // times out after $timeout secs 
   		curl_setopt($ch, CURLOPT_POST, 1); // set POST method 
 
   		$body = json_encode($tracks);
