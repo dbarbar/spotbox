@@ -1,4 +1,4 @@
-<p>Search for songs below and click "Request" to add them to the Fierce jukebox queue.</p>
+<p>Search for songs below and click "Request" to add them to the SpotiMonster playlist.</p>
 
 <h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
