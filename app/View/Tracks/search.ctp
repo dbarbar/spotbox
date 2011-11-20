@@ -25,8 +25,8 @@
     <tr>
         <td><?php echo $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track->getURI()))?>
         <td><?php echo $track->getTitle(); ?>
-        <td><?php echo $track->getArtistAsString(); ?></td>
-        <td><?php echo $track->getAlbum(); ?></td>
+        <td><?php echo $this->Html->link($track->getArtistAsString(), '/?q=' . urlencode($track->getArtistAsString())); ?></td>
+        <td><?php echo $this->Html->link($track->getAlbum(), '/?q=' . urlencode($track->getAlbum())); ?></td>
         <td><?php echo $track->getLengthInMinutesAsString(); ?></td>
         <td><?php echo $track->getPopularityAsPercent(); ?></td>
     </tr>
