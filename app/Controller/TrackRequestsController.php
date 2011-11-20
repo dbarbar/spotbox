@@ -24,7 +24,10 @@ class TrackRequestsController extends AppController {
     }
     
     public function add($uri) {
-      if ($this->_is_valid_track_uri($uri)) {
+      if (!$this->_is_valid_track_uri($uri)) {
+        $this->Session->setFlash('Invalid Track URI');
+      }
+      else {
         $result = $this->_spotify_add_tracks(array($uri));
 /*        $this->TrackRequest->id = $uri;
         if ($this->TrackRequest->read() === FALSE) {
@@ -40,7 +43,7 @@ class TrackRequestsController extends AppController {
         }
 */
         if ($result === FALSE) {
-          $this->Session->setFlash('Uh oh.  Could not connect to the local Spotify Playlist API Server. Tell David to restart it.');
+          $this->Session->setFlash('Uh oh.  Didn\'t get a response from the local Spotify Playlist API Server. Tell David to fix it.');
         }
         else {
           $result = json_decode($result);
@@ -104,17 +107,11 @@ class TrackRequestsController extends AppController {
   		return $result;
     }
 
-    private function _is_valid_track_uri($uri) {
+  private function _is_valid_track_uri($uri) {
+    $pattern = '/^spotify:track:(A-Za-z0-9)*/';
+    if (preg_match($pattern, $uri)) {
       return TRUE;
-      /**
-       * @todo determine if the string given is a valid spotify track uri.
-       *
-       if ($uri == 'spotify:track:1234') {
-         return TRUE;
-       }
-       else {
-         return FALSE;
-       }
-       */
     }
+    return FALSE;
+  }
 }
