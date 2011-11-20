@@ -40,11 +40,18 @@ class TrackRequestsController extends AppController {
         }
 */
         if ($result === FALSE) {
-          $this->Session->setFlash('Uh oh.  Could not add the track.  Try again later.');
+          $this->Session->setFlash('Uh oh.  Could not connect to the local Spotify Playlist API Server. Tell David to restart it.');
         }
         else {
-          $this->Session->setFlash('cURL Result: ' . $result);
-//          $this->Session->setFlash('Your request has been added to the playlist.');
+          $result = json_decode($result);
+          
+          if (isset($result->message)) {
+            $this->Session->setFlash('Message Response from the local Spotify Server.  Send this to David: ' . $result->message);
+          }
+          
+          if (isset($result->tracks) && in_array($uri, $result->tracks)) {
+            $this->Session->setFlash('Your request has been added to the playlist. Woohoo!');
+          }
         }
       }
       $this->redirect('/');
