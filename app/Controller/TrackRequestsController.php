@@ -28,8 +28,9 @@ class TrackRequestsController extends AppController {
         $this->Session->setFlash('Invalid Track URI');
       }
       else {
-        $result = $this->_spotify_add_tracks(array($uri));
-/*        $this->TrackRequest->id = $uri;
+
+        // Save the request locally.
+        $this->TrackRequest->id = $uri;
         if ($this->TrackRequest->read() === FALSE) {
           // new request
           $this->TrackRequest->save(array('id' => $uri));
@@ -38,10 +39,12 @@ class TrackRequestsController extends AppController {
           // already exists
           /**
            * @todo figure out the request count incrementing.
-           *
+           */
           $this->TrackRequest->save(array('id' => $uri, 'request_count' => 2));
         }
-*/
+
+        // talk to Spotify and add the track to the playlist.
+        $result = $this->_spotify_add_tracks(array($uri));        
         if ($result === FALSE) {
           $this->Session->setFlash('Uh oh.  Didn\'t get a response from the local Spotify Playlist API Server. Tell David to fix it.');
         }
