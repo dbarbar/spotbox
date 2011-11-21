@@ -81,7 +81,7 @@ class TrackRequestsController extends AppController {
 
     $results = $this->TrackRequest->find('all');
     // nothing to send.
-    if (count($results < 1)) {
+    if (count($results) < 1) {
       return;
     }
     $tracks = array();
