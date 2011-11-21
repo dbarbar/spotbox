@@ -28,7 +28,6 @@ class TrackRequestsController extends AppController {
         $this->Session->setFlash('Invalid Track URI');
       }
       else {
-
         // Save the request locally.
         $this->TrackRequest->id = $uri;
         if ($this->TrackRequest->read() === FALSE) {
@@ -42,23 +41,7 @@ class TrackRequestsController extends AppController {
            */
           $this->TrackRequest->save(array('id' => $uri, 'request_count' => 2));
         }
-
-        // talk to Spotify and add the track to the playlist.
-        $result = $this->_spotify_add_tracks(array($uri));        
-        if ($result === FALSE) {
-          $this->Session->setFlash('Uh oh.  Didn\'t get a response from the local Spotify Playlist API Server. Tell David to fix it.');
-        }
-        else {
-          $result = json_decode($result);
-          
-          if (isset($result->message)) {
-            $this->Session->setFlash('Message Response from the local Spotify Server.  Send this to David: ' . $result->message);
-          }
-          
-          if (isset($result->tracks) && in_array($uri, $result->tracks)) {
-            $this->Session->setFlash('Your request has been added to the playlist. Woohoo!');
-          }
-        }
+        $this->Session->setFlash('Your request has been added. Woohoo!');
       }
       $this->redirect('/');
     }
@@ -67,6 +50,58 @@ class TrackRequestsController extends AppController {
       $this->TrackRequest->deleteAll('1 = 1');
       $this->Session->setFlash("The play queue has been cleared.");
       $this->redirect(array('action' => 'index'));
+    }
+    
+    /**
+     * Retrieve the added requests from our model
+     * and batch send them to Spotify.
+     * Then remove successful adds from our request model.
+     */
+    public function cron() {
+      $results = $this->TrackRequest->find('all');
+      $tracks = array();
+      foreach ($results as $row) {
+        $tracks[] = $row['TrackRequest']['id'];
+      }
+      
+      // talk to Spotify and add the tracks to the playlist.
+      $result = $this->_spotify_add_tracks($tracks);
+      $success = TRUE;
+      $error = array();
+      if ($result === FALSE) {
+        $error[] = 'Uh oh.  Didn\'t get a response from the local Spotify Playlist API Server. Tell David to fix it.';
+        $success = FALSE;
+      }
+      else {
+        $result = json_decode($result);
+        
+        if (isset($result->message)) {
+          $error[] = 'Message Response from the local Spotify Server.  Send this to David: ' . $result->message;
+          $success = FALSE;
+        }
+        
+        if (isset($result->tracks)) {
+          $valid_tracks_added = 0;
+          foreach ($tracks as $track) {
+            if (in_array($track, $result->tracks)) {
+              $valid_tracks_added++;
+              $this->TrackRequest->delete($track);
+            }
+            else {
+              $success = FALSE;
+              $error[] = 'Track ' . $track . ' not found in the playlist returned.';
+            }
+          }
+        }
+      }
+      
+      $this->response->type('text/plain');
+      $this->response->disableCache();
+      if (!$success) {
+        $this->response->body(implode("\n", $error));
+      }
+      // won't look for the view
+      $this->autoRender = FALSE;
     }
     
     /**
