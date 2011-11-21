@@ -1,9 +1,7 @@
 
 <h1>Track Requests</h1>
 
-<p><?php echo $this->Html->link('Click here for a list of requests to paste into Spotify.', array('controller' => 'TrackRequests', 'action' => 'textlist')); ?></p>
-
-<p><?php echo $this->Html->link('Click here to clear the play queue.', array('controller' => 'TrackRequests', 'action' => 'clear_all')); ?>  Do this after you paste the list above into Spotify.</p>
+<p>These are pending additions to the SpotiMonster Requests playlist.  They will be added at the next scheduled batch update.</p>
 
 <table>
     <tr>
