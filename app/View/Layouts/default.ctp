@@ -16,7 +16,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('SpotiMonster Beta 1', '/'); ?></h1>
+			<h1><?php echo $this->Html->link('SpotiMonster Beta 2', '/'); ?></h1>
 		</div>
 		<div id="content">
 

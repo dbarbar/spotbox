@@ -1,5 +1,7 @@
 <p>Search for songs below and click "Request" to add them to the SpotiMonster playlist.</p>
 
+<p><strong>New:</strong> December 19, 2011 - The search results now only show songs that are playable in the US.  Previously all songs were shown, which resulted in requests that never got played.  Sorry about that.  -- David
+
 <h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
 <?php echo $this->Form->text('q'); ?>
@@ -22,8 +24,16 @@
     </tr>
 
     <?php foreach ($results as $track): ?>
+      <?php
+        if (!$track->getAlbum()->isAvailable('US')) {
+          continue;
+        }
+      ?>
     <tr>
-        <td><?php echo $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track->getURI()))?>
+        <td>
+        <?php
+          echo $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track->getURI()));
+        ?>
         <td><?php echo $track->getTitle(); ?>
         <td><?php echo $this->Html->link($track->getArtistAsString(), '/?q=' . urlencode($track->getArtistAsString())); ?></td>
         <td><?php echo $this->Html->link($track->getAlbum(), '/?q=' . urlencode($track->getAlbum())); ?></td>
