@@ -39,7 +39,7 @@ class TrackRequestsController extends AppController {
       $this->Session->setFlash('Invalid Track URI');
     }
     else if ($this->PlaylistTrack->find('count', array('conditions' => array('PlaylistTrack.track_id' => $uri))) > 0) {
-      $this->Session->setFlash('This track is already in the playlist. Try again later.');
+      $this->Session->setFlash('That track is already in the playlist. Try again later.');
     }
     else {
       // Save the request locally.

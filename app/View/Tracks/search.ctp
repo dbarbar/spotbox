@@ -44,3 +44,27 @@
 
 </table>
 <?php endif; ?>
+
+<?php if (count($tracks) > 0) : ?>
+
+  <h2>Most Recently Requested</h2>
+  <p>(10 to 20 minute delay)</p>
+  <table>
+      <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Album</th>
+      </tr>
+
+      <?php foreach ($tracks as $spotify_track): ?>
+      <tr>
+          <td><?php echo $spotify_track['Track']['title']; ?></td>
+          <td><?php echo $spotify_track['Track']['artist']; ?></td>
+          <td><?php echo $spotify_track['Track']['album']; ?></td>
+      </tr>
+      <?php endforeach; ?>
+
+  </table>
+
+
+<?php endif; ?>
