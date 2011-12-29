@@ -1,9 +1,9 @@
 <?php
 
-class Track extends AppModel {
+class smTrack extends AppModel {
   public $name = 'Track';
   public $validate = array(
-   'uri' => array(
+   'id' => array(
      'rule' => 'notEmpty', // @todo create our own rule for determining a valid spotify uri
    ),
    'title' => array(
@@ -16,5 +16,5 @@ class Track extends AppModel {
     'rule' => 'notEmpty',
    ),
   );
-  
+
 }

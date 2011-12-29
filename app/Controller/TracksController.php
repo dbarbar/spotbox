@@ -3,9 +3,10 @@
 class TracksController extends AppController {
   public $helpers = array ('Html','Form');
   public $name = 'Tracks';
+  public $uses = array('smTrack', 'PlaylistTrack');
 
   public function index() {
-      $this->set('tracks', $this->Track->find('all'));
+      $this->set('tracks', $this->PlaylistTrack->find('all', array('limit' => 200, 'order' => 'PlaylistTrack.id')));
   }
 
   public function search() {

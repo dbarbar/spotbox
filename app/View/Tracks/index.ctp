@@ -1,23 +1,17 @@
 
-<h1>Spotify Track Data</h1>
+<h1>Currently on the playlist</h1>
 <table>
     <tr>
-        <th>Id</th>
         <th>Title</th>
         <th>Artist</th>
         <th>Album</th>
-        <th>Length</th>
-        <th>Popularity</th>
     </tr>
 
     <?php foreach ($tracks as $spotify_track): ?>
     <tr>
-        <td><?php echo $spotify_track['SpotifyTrack']['uri']; ?></td>
-        <td><?php echo $spotify_track['SpotifyTrack']['title']; ?></td>
-        <td><?php echo $spotify_track['SpotifyTrack']['artist']; ?></td>
-        <td><?php echo $spotify_track['SpotifyTrack']['album']; ?></td>
-        <td><?php echo $spotify_track['SpotifyTrack']['length']; ?></td>
-        <td><?php echo $spotify_track['SpotifyTrack']['popularity']; ?></td>
+        <td><?php echo $spotify_track['Track']['title']; ?></td>
+        <td><?php echo $spotify_track['Track']['artist']; ?></td>
+        <td><?php echo $spotify_track['Track']['album']; ?></td>
     </tr>
     <?php endforeach; ?>
 
