@@ -7,6 +7,15 @@
 	</title>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+  <meta name="viewport" content="user-scalable=no, width=device-width" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="apple-touch-startup-image" href="./startup.png" />
+  <script>
+   function BlockMove(event) {
+    // Tell Safari not to move the window.
+    event.preventDefault() ;
+   }
+  </script>
 	<?php
 		// echo $this->Html->meta('icon');
 
@@ -15,7 +24,7 @@
 		echo $scripts_for_layout;
 	?>
 </head>
-<body>
+<body ontouchmove="BlockMove(event);">
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link('SpotiMonster Beta 3', '/'); ?></h1>
