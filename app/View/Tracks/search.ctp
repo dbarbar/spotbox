@@ -42,17 +42,9 @@
 <?php if (count($tracks) > 0) : ?>
 
   <h2>Recently Added</h2>
-  <ul>
-
       <?php foreach ($tracks as $spotify_track): ?>
-      <li>
-          <?php echo $spotify_track['Track']['title']; ?><br />
-          by <?php echo $spotify_track['Track']['artist']; ?><br />
-          (<?php echo $spotify_track['Track']['album']; ?>)
-      </li>
+      <p><?php echo $spotify_track['Track']['title']; ?> by <?php echo $spotify_track['Track']['artist']; ?><br />
+      </p>
       <?php endforeach; ?>
-
-  </ul>
-
 
 <?php endif; ?>
