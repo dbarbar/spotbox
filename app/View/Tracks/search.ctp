@@ -1,6 +1,6 @@
 <p>Search for songs below and click "Request" to add them to the SpotiMonster playlist.</p>
 
-<p><strong>New:</strong> December 19, 2011 - The search results now only show songs that are playable in the US.  Previously all songs were shown, which resulted in requests that never got played.  Sorry about that.  -- David
+<p><strong>New:</strong> December 30 - You can no longer add songs that are already on the playlist.</p>
 
 <h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
@@ -47,8 +47,7 @@
 
 <?php if (count($tracks) > 0) : ?>
 
-  <h2>Most Recently Requested</h2>
-  <p>(10 to 20 minute delay)</p>
+  <h2>Recently Added</h2>
   <table>
       <tr>
           <th>Title</th>
