@@ -13,7 +13,7 @@ class TracksController extends AppController {
     $this->Set('results', array());
     $this->Set('tracks', array());
     $this->Set('q', NULL);
-    if (isset($this->request->query['q'])) {
+    if (isset($this->request->query['q']) && $this->request->query['q'] != '') {
       $q = $this->request->query['q'];
       // do a spotify api call and set the results to the view
       $this->Set('results', $this->_spotify_search($q));
