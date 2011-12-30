@@ -5,6 +5,8 @@
 	<title>
 		SpotiMonster - <?php echo $title_for_layout; ?>
 	</title>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 	<?php
 		// echo $this->Html->meta('icon');
 
@@ -16,7 +18,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('SpotiMonster Beta 2', '/'); ?></h1>
+			<h1><?php echo $this->Html->link('SpotiMonster Beta 3', '/'); ?></h1>
 		</div>
 		<div id="content">
 
