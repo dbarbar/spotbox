@@ -6,8 +6,8 @@
 		SpotiMonster - <?php echo $title_for_layout; ?>
 	</title>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-  <meta name="viewport" content="user-scalable=no, width=device-width" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="translucent-black" />
+  <meta name="viewport" content="user-scalable=yes, width=device-width" />
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="apple-touch-startup-image" href="./startup.png" />
   <script>
