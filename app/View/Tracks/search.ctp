@@ -1,9 +1,9 @@
-<p>Search for songs below and click "Request" to add them to the SpotiMonster playlist.</p>
-
 <h2>Search</h2>
 <?php echo $this->Form->create(FALSE, array('type' => 'get')); ?>
 <?php echo $this->Form->text('q'); ?>
 <?php echo $this->Form->end('Search'); ?>
+
+<div style="clear: both; height: 1em;"></div>
 
 <?php if ($q && count($results) == 0): ?>
   <h2>No Results found</h2>

@@ -299,6 +299,11 @@ input, textarea {
 	padding: 1%;
 	width:98%;
 }
+input#q {
+  width: 80%;
+  float: left;
+  clear: none;
+}
 select {
 	clear: both;
 	font-size: 120%;
@@ -345,6 +350,17 @@ form .submit input[type=submit] {
 	color: #fff;
 	text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0px;
 	padding: 8px 10px;
+}
+form#searchForm div.submit {
+  width: 100px;
+  float: left;
+  clear: right;
+  font-size: 140%;
+  margin: 0 0.5em;
+  padding: 0;
+}
+form#searchForm div.submit input[type=submit] {
+  
 }
 form .submit input[type=submit]:hover {
 	background: #5BA150;
