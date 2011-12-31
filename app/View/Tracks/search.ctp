@@ -9,8 +9,18 @@
   <h2>No Results found</h2>
 <?php endif; ?>
 
+
 <?php if (count($results) > 0): ?>
-<h2>Search Results</h2>
+
+<?php 
+if (isset($album_name)) {
+  print "<h2>$album_name";
+}
+else {
+  print "<h2>Search Results</h2>";
+}
+?>
+
 <table>
     <tr>
         <th>Request</th>
@@ -20,19 +30,19 @@
     </tr>
 
     <?php foreach ($results as $track): ?>
+    <tr>
       <?php
-        if (!$track->getAlbum()->isAvailable('US')) {
-          continue;
+        if ($track['requested']) {
+          $request_cell = 'Requested';
+        }
+        else {
+          $request_cell = $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track['uri']));
         }
       ?>
-    <tr>
-        <td>
-        <?php
-          echo $this->Html->link('Request', array('controller' => 'TrackRequests', 'action' => 'add', $track->getURI()));
-        ?>
-        <td><?php echo $track->getTitle(); ?>
-        <td><?php echo $this->Html->link($track->getArtistAsString(), '/?q=' . urlencode($track->getArtistAsString())); ?></td>
-        <td><?php echo $this->Html->link($track->getAlbum(), '/?q=' . urlencode($track->getAlbum())); ?></td>
+        <td><?php echo $request_cell; ?>
+        <td><?php echo $track['title']; ?>
+        <td><?php echo $this->Html->link($track['artist'], '/?q=' . urlencode($track['artist'])); ?></td>
+        <td><?php echo $this->Html->link($track['album'], '/?q=' . urlencode($track['album'])); ?></td>
     </tr>
     <?php endforeach; ?>
 

@@ -9,14 +9,61 @@ class TracksController extends AppController {
       $this->set('tracks', $this->PlaylistTrack->find('all', array('limit' => 200, 'order' => 'PlaylistTrack.id')));
   }
 
+/**
+ * @todo create an album controller and lookup action.
+ * @todo create an artist controller and lookup action.
+ */
+/*
+  public function lookup() {
+    if (!isset($this->request->query['q'])) {
+      $this->redirect('/');
+    }    
+    $this->Set('tracks', array());
+  }
+*/
   public function search() {
     $this->Set('results', array());
     $this->Set('tracks', array());
     $this->Set('q', NULL);
     if (isset($this->request->query['q']) && $this->request->query['q'] != '') {
       $q = $this->request->query['q'];
-      // do a spotify api call and set the results to the view
-      $this->Set('results', $this->_spotify_search($q));
+      $type = 'track';
+      if (isset($this->request->query['type'])) {
+        $type = $this->request->query['type'];
+        if (!in_array($type, array('track', 'album'))) {
+          $type = 'track';
+        }
+      }
+      
+      $initial_results = $this->_spotify_search($q, $type);
+      if ($type == 'album') {
+        $this->Set('album_name', $initial_results->getName());
+        $initial_results = $initial_results->getTracks();
+      }
+      $results = array();
+      if (count($initial_results) > 0) {
+        foreach ($initial_results as $track) {
+          if (!$track->getAlbum()->isAvailable('US')) {
+            continue;
+          }
+        
+          if ($this->PlaylistTrack->find('count', array('conditions' => array('PlaylistTrack.track_id' => $track->getURI()))) > 0) {
+            $requested = TRUE;
+          }
+          else {
+            $requested = FALSE;
+          }
+
+          $results[] = array(
+            'requested' => $requested,
+            'uri' => $track->getURI(),
+            'title' => $track->getTitle(),
+            'artist' => $track->getArtistAsString(),
+            'album' => $track->getAlbum(),
+          );
+        }
+      }
+      $this->Set('results', $results);
       $this->Set('q', $q);
     }
     else {
@@ -49,7 +96,7 @@ class TracksController extends AppController {
    * Returns an empty array for zero results.
    * Returns NULL on error.
    */
-  private function _spotify_search($q) {
+  private function _spotify_search($q, $type = 'track') {
     App::import('Vendor', 'MetatuneConfig', array('file' => 'metatune' . DS . 'config.php'));
     App::import('Vendor', 'MetatuneClass', array('file' => 'metatune' . DS . 'MetaTune.class.php'));
     App::import('Vendor', 'MetatuneMBSimpleXMLElement', array('file' => 'metatune' . DS . 'MBSimpleXMLElement.class.php'));
@@ -59,8 +106,17 @@ class TracksController extends AppController {
     App::import('Vendor', 'MetatuneAlbum', array('file' => 'metatune' . DS . 'Album.class.php'));
     App::import('Vendor', 'MetatuneTrack', array('file' => 'metatune' . DS . 'Track.class.php'));
 
-    $spotiy = MetaTune::getInstance();
-    $response = $spotiy->searchTrack($q);
+    $spotify = MetaTune::getInstance();
+    
+    switch ($type) {
+      case 'album':
+        $response = $spotify->searchAlbum($q);
+        break;
+      default:
+        $response = $spotify->searchTrack($q);
+        break;
+    }
+
     if (count($response) < 1) {
       return array();
     }
